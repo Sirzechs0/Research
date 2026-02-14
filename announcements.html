@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements | PCSHS SMS</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="logo-circle">
+                        <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=iMPywxmVTEoQ7kNvwEQrPv5&_nc_oc=AdnGshlAzgkDnDwRwQBzFucGwYtIyKoLSCQzriNtRUuX0HehECkT_XVzM3UK5J4S63Y&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=vm_hQKnxwKt6pluqFSEt6g&oh=00_AfvT22S4-xXQa66rsTN-f0n9tPTQ-rv-IXTeO9lvmAypCg&oe=6995E01D" alt="PCSHS Logo">
+                    </div>
+                    <div class="brand-text">
+                        <h1>PCSHS</h1>
+                        <p class="tagline">We Excel, We Serve, We Lead.</p>
+                    </div>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">Dashboard</a>
+                    <a href="attendance.html" class="nav-link">Attendance</a>
+                    <a href="announcements.html" class="nav-link active">Announcements</a>
+                    <a href="lost-found.html" class="nav-link">Lost & Found</a>
+                    <a href="staff.html" class="nav-link">Staff</a>
+                    <a href="settings.html" class="nav-link">Settings</a>
+                </nav>
+
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                    <span class="theme-icon">◐</span>
+                </button>
+
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Dashboard</a>
+            <a href="attendance.html" class="mobile-nav-link">Attendance</a>
+            <a href="announcements.html" class="mobile-nav-link active">Announcements</a>
+            <a href="lost-found.html" class="mobile-nav-link">Lost & Found</a>
+            <a href="staff.html" class="mobile-nav-link">Staff</a>
+            <a href="settings.html" class="mobile-nav-link">Settings</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h2 class="page-title">Announcements</h2>
+                    <p class="page-subtitle">Stay updated with the latest school news and events</p>
+                </div>
+
+                <div class="announcements-grid">
+                    <article class="announcement-card priority-high">
+                        <div class="card-tag">Important</div>
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 14, 2026</span>
+                            <span class="announcement-category">Academic</span>
+                        </div>
+                        <h3>Final Examination Schedule Posted</h3>
+                        <p>The final examination schedule for all sections has been posted on the bulletin board and uploaded to the school portal. Students are advised to review their schedules carefully and prepare accordingly. Examinations will begin on March 1, 2026.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Academic Office</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 12, 2026</span>
+                            <span class="announcement-category">Events</span>
+                        </div>
+                        <h3>Science Fair Registration Now Open</h3>
+                        <p>The annual PCSHS Science Fair is scheduled for March 15, 2026. All interested students are encouraged to submit their project proposals by February 20, 2026. This year's theme is "Innovations for a Sustainable Future." Visit the Science Department for registration forms and guidelines.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Science Department</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 10, 2026</span>
+                            <span class="announcement-category">General</span>
+                        </div>
+                        <h3>Reminder: Wear Proper School Uniform</h3>
+                        <p>All students are reminded to wear the complete and proper school uniform daily. This includes the prescribed ID lace, proper grooming, and adherence to the dress code policy. Students not in proper uniform may not be allowed to enter the school premises.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Student Affairs Office</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 8, 2026</span>
+                            <span class="announcement-category">Events</span>
+                        </div>
+                        <h3>Intramurals 2026: Registration Extended</h3>
+                        <p>Due to popular demand, the registration period for Intramurals 2026 has been extended until February 18, 2026. Sign up for your favorite sports and represent your section! Events include basketball, volleyball, badminton, chess, and more. See your PE teacher for registration details.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Physical Education Department</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 6, 2026</span>
+                            <span class="announcement-category">Academic</span>
+                        </div>
+                        <h3>Library Extended Hours During Exam Week</h3>
+                        <p>The school library will extend its operating hours during the final examination period. Starting February 24, 2026, the library will be open from 7:00 AM to 7:00 PM to accommodate students who need additional study time and resources. Please observe library rules and maintain silence.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Library Office</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 4, 2026</span>
+                            <span class="announcement-category">General</span>
+                        </div>
+                        <h3>New Security Guidelines Implemented</h3>
+                        <p>For the safety and security of all students and staff, new security protocols have been implemented. All bags will be subject to inspection at the school gates. Students must present their valid school IDs upon entry. Visitors must register at the security office before entering the campus.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Security Office</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">February 2, 2026</span>
+                            <span class="announcement-category">Events</span>
+                        </div>
+                        <h3>Valentine's Day Fundraiser for Charity</h3>
+                        <p>The Student Council is organizing a Valentine's Day charity fundraiser. Proceeds will go to the local children's hospital. Activities include a bake sale, flower grams, and a talent showcase. Show your support and spread the love! Event date: February 14, 2026.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Student Council</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">January 30, 2026</span>
+                            <span class="announcement-category">Academic</span>
+                        </div>
+                        <h3>Math Olympiad Team Tryouts Announced</h3>
+                        <p>Students interested in representing PCSHS in the Regional Math Olympiad are invited to participate in the selection tryouts. Date: February 21, 2026, 3:00 PM at the Math Laboratory. Prepare topics include algebra, geometry, number theory, and combinatorics. See Mr. Santos for more details.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Mathematics Department</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card priority-high">
+                        <div class="card-tag">Important</div>
+                        <div class="announcement-meta">
+                            <span class="announcement-date">January 28, 2026</span>
+                            <span class="announcement-category">Health</span>
+                        </div>
+                        <h3>Health and Wellness Seminar</h3>
+                        <p>A mandatory health and wellness seminar will be conducted for all grade levels. Topics include mental health awareness, nutrition, and stress management. Schedule: Grade 10 - February 19, 2026. Attendance is required. Parents are welcome to attend the evening session at 6:00 PM.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: Guidance Office</span>
+                        </div>
+                    </article>
+
+                    <article class="announcement-card">
+                        <div class="announcement-meta">
+                            <span class="announcement-date">January 26, 2026</span>
+                            <span class="announcement-category">Technology</span>
+                        </div>
+                        <h3>WiFi Network Upgrade Scheduled</h3>
+                        <p>The school's WiFi network will undergo a major upgrade to improve connectivity and speed. Scheduled maintenance: February 17-18, 2026. Internet access may be intermittent during this period. The IT Department appreciates your patience and understanding.</p>
+                        <div class="announcement-footer">
+                            <span class="posted-by">Posted by: IT Department</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Pasig City Science High School</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/OfficialPasigScienceHS" target="_blank" class="social-link" title="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="footer-tagline">We Excel, We Serve, We Lead.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Address: [To be updated]</p>
+                    <p>Phone: 123-456-7890</p>
+                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="523b3c343d122231213a217c3736277c223a">[email&#160;protected]</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Admissions</a>
+                    <a href="#">Academic Programs</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pasig City Science High School. All rights reserved.

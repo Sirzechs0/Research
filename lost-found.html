@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found | PCSHS SMS</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="logo-circle">
+                        <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=iMPywxmVTEoQ7kNvwEQrPv5&_nc_oc=AdnGshlAzgkDnDwRwQBzFucGwYtIyKoLSCQzriNtRUuX0HehECkT_XVzM3UK5J4S63Y&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=vm_hQKnxwKt6pluqFSEt6g&oh=00_AfvT22S4-xXQa66rsTN-f0n9tPTQ-rv-IXTeO9lvmAypCg&oe=6995E01D" alt="PCSHS Logo">
+                    </div>
+                    <div class="brand-text">
+                        <h1>PCSHS</h1>
+                        <p class="tagline">We Excel, We Serve, We Lead.</p>
+                    </div>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">Dashboard</a>
+                    <a href="attendance.html" class="nav-link">Attendance</a>
+                    <a href="announcements.html" class="nav-link">Announcements</a>
+                    <a href="lost-found.html" class="nav-link active">Lost & Found</a>
+                    <a href="staff.html" class="nav-link">Staff</a>
+                    <a href="settings.html" class="nav-link">Settings</a>
+                </nav>
+
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                    <span class="theme-icon">◐</span>
+                </button>
+
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Dashboard</a>
+            <a href="attendance.html" class="mobile-nav-link">Attendance</a>
+            <a href="announcements.html" class="mobile-nav-link">Announcements</a>
+            <a href="lost-found.html" class="mobile-nav-link active">Lost & Found</a>
+            <a href="staff.html" class="mobile-nav-link">Staff</a>
+            <a href="settings.html" class="mobile-nav-link">Settings</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h2 class="page-title">Lost & Found</h2>
+                    <p class="page-subtitle">Help reunite lost items with their owners</p>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">All Items</button>
+                    <button class="filter-btn" data-filter="lost">Lost</button>
+                    <button class="filter-btn" data-filter="found">Found</button>
+                </div>
+
+                <div class="lost-found-grid">
+                    <div class="lf-card found-item" data-category="found">
+                        <div class="lf-badge found">Found</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=Calculator" alt="Calculator">
+                        </div>
+                        <div class="lf-content">
+                            <h3>Scientific Calculator</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Location Found:</span>
+                                    <span class="info-value">Room 302</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 13, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">Security Office</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card lost-item" data-category="lost">
+                        <div class="lf-badge lost">Lost</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=Blue+Flask" alt="Water Flask">
+                        </div>
+                        <div class="lf-content">
+                            <h3>Blue Water Flask</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Last Seen:</span>
+                                    <span class="info-value">Gymnasium</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 12, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">Section E Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card found-item" data-category="found">
+                        <div class="lf-badge found">Found</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=ID+Lace" alt="ID Lace">
+                        </div>
+                        <div class="lf-content">
+                            <h3>School ID Lace</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Location Found:</span>
+                                    <span class="info-value">Library</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 11, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">Librarian's Desk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card lost-item" data-category="lost">
+                        <div class="lf-badge lost">Lost</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=Eyeglasses" alt="Eyeglasses">
+                        </div>
+                        <div class="lf-content">
+                            <h3>Black-Framed Eyeglasses</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Last Seen:</span>
+                                    <span class="info-value">Cafeteria</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 10, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">Section A Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card found-item" data-category="found">
+                        <div class="lf-badge found">Found</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=USB+Drive" alt="USB Drive">
+                        </div>
+                        <div class="lf-content">
+                            <h3>USB Flash Drive (16GB)</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Location Found:</span>
+                                    <span class="info-value">Computer Lab 1</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 9, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">IT Department</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card lost-item" data-category="lost">
+                        <div class="lf-badge lost">Lost</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=Notebook" alt="Notebook">
+                        </div>
+                        <div class="lf-content">
+                            <h3>Green Mathematics Notebook</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Last Seen:</span>
+                                    <span class="info-value">Room 205</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 8, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">Section C Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card found-item" data-category="found">
+                        <div class="lf-badge found">Found</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=Jacket" alt="Jacket">
+                        </div>
+                        <div class="lf-content">
+                            <h3>Gray Varsity Jacket</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Location Found:</span>
+                                    <span class="info-value">Covered Court</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 7, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">PE Department</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lf-card lost-item" data-category="lost">
+                        <div class="lf-badge lost">Lost</div>
+                        <div class="lf-image">
+                            <img src="https://via.placeholder.com/300x200/f5f5f5/666666?text=Wallet" alt="Wallet">
+                        </div>
+                        <div class="lf-content">
+                            <h3>Brown Leather Wallet</h3>
+                            <div class="lf-details">
+                                <div class="lf-info">
+                                    <span class="info-label">Last Seen:</span>
+                                    <span class="info-value">School Grounds</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Date:</span>
+                                    <span class="info-value">February 6, 2026</span>
+                                </div>
+                                <div class="lf-info">
+                                    <span class="info-label">Contact:</span>
+                                    <span class="info-value">Section D Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Pasig City Science High School</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/OfficialPasigScienceHS" target="_blank" class="social-link" title="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="footer-tagline">We Excel, We Serve, We Lead.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Address: [To be updated]</p>
+                    <p>Phone: 123-456-7890</p>
+                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="365f585059764655455e451853524318465e">[email&#160;protected]</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Admissions</a>
+                    <a href="#">Academic Programs</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pasig City Science High School. All rights reserved.

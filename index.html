@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | PCSHS SMS</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="logo-circle">
+                        <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=iMPywxmVTEoQ7kNvwEQrPv5&_nc_oc=AdnGshlAzgkDnDwRwQBzFucGwYtIyKoLSCQzriNtRUuX0HehECkT_XVzM3UK5J4S63Y&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=vm_hQKnxwKt6pluqFSEt6g&oh=00_AfvT22S4-xXQa66rsTN-f0n9tPTQ-rv-IXTeO9lvmAypCg&oe=6995E01D" alt="PCSHS Logo">
+                    </div>
+                    <div class="brand-text">
+                        <h1>PCSHS</h1>
+                        <p class="tagline">We Excel, We Serve, We Lead.</p>
+                    </div>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link active">Dashboard</a>
+                    <a href="attendance.html" class="nav-link">Attendance</a>
+                    <a href="announcements.html" class="nav-link">Announcements</a>
+                    <a href="lost-found.html" class="nav-link">Lost & Found</a>
+                    <a href="staff.html" class="nav-link">Staff</a>
+                    <a href="settings.html" class="nav-link">Settings</a>
+                </nav>
+
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                    <span class="theme-icon">◐</span>
+                </button>
+
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="index.html" class="mobile-nav-link active">Dashboard</a>
+            <a href="attendance.html" class="mobile-nav-link">Attendance</a>
+            <a href="announcements.html" class="mobile-nav-link">Announcements</a>
+            <a href="lost-found.html" class="mobile-nav-link">Lost & Found</a>
+            <a href="staff.html" class="mobile-nav-link">Staff</a>
+            <a href="settings.html" class="mobile-nav-link">Settings</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="content-container">
+                <section class="hero-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <div class="slide-image" style="background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('https://source.unsplash.com/1600x600/?science,laboratory') center/cover;">
+                                <div class="slide-content">
+                                    <span class="slide-tag">Latest Event</span>
+                                    <h2>Science Fair 2026</h2>
+                                    <p>Join us for groundbreaking innovations</p>
+                                    <button class="slide-btn">Learn More</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-image" style="background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('https://source.unsplash.com/1600x600/?students,graduation') center/cover;">
+                                <div class="slide-content">
+                                    <span class="slide-tag">Achievement</span>
+                                    <h2>Regional Math Olympiad Winners</h2>
+                                    <p>Excellence in problem-solving</p>
+                                    <button class="slide-btn">Read Story</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-image" style="background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('https://source.unsplash.com/1600x600/?technology,robotics') center/cover;">
+                                <div class="slide-content">
+                                    <span class="slide-tag">New Program</span>
+                                    <h2>Robotics Lab Opening</h2>
+                                    <p>State-of-the-art facilities</p>
+                                    <button class="slide-btn">Explore Lab</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-nav prev" aria-label="Previous">‹</button>
+                        <button class="carousel-nav next" aria-label="Next">›</button>
+                        
+                        <div class="carousel-dots">
+                            <span class="dot active" data-slide="0"></span>
+                            <span class="dot" data-slide="1"></span>
+                            <span class="dot" data-slide="2"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="page-header">
+                    <h2 class="page-title">Dashboard Overview</h2>
+                    <p class="page-subtitle">Welcome to PCSHS Management System</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="245">0</span>
+                            <span class="stat-label">Total Students</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">✓</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="95">0</span><span class="stat-percentage">%</span>
+                            <span class="stat-label">Attendance Rate</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📢</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="12">0</span>
+                            <span class="stat-label">Announcements</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🔍</div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-target="8">0</span>
+                            <span class="stat-label">Lost & Found</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Latest Announcements</h3>
+                            <a href="announcements.html" class="view-all">View All →</a>
+                        </div>
+                        <div class="announcement-list">
+                            <div class="announcement-item">
+                                <div class="announcement-date">Feb 14</div>
+                                <div class="announcement-content">
+                                    <h4>Final Exam Schedule</h4>
+                                    <p>Check announcements page</p>
+                                </div>
+                            </div>
+                            <div class="announcement-item">
+                                <div class="announcement-date">Feb 12</div>
+                                <div class="announcement-content">
+                                    <h4>Science Fair Registration</h4>
+                                    <p>Due Feb 20th</p>
+                                </div>
+                            </div>
+                            <div class="announcement-item">
+                                <div class="announcement-date">Feb 10</div>
+                                <div class="announcement-content">
+                                    <h4>Uniform Reminder</h4>
+                                    <p>Proper dress code required</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Today's Attendance</h3>
+                            <a href="attendance.html" class="view-all">Details →</a>
+                        </div>
+                        <div class="attendance-chart">
+                            <div class="circular-progress">
+                                <svg width="180" height="180">
+                                    <circle cx="90" cy="90" r="70" class="progress-bg"></circle>
+                                    <circle cx="90" cy="90" r="70" class="progress-fill" style="--percentage: 95;"></circle>
+                                </svg>
+                                <div class="progress-text">
+                                    <span class="progress-number" data-target="95">0</span><span class="progress-percentage">%</span>
+                                    <span class="progress-label">Present</span>
+                                </div>
+                            </div>
+                            <div class="attendance-breakdown">
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Present</span>
+                                    <span class="breakdown-value" data-target="233">0</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Absent</span>
+                                    <span class="breakdown-value" data-target="12">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Lost & Found</h3>
+                            <a href="lost-found.html" class="view-all">View All →</a>
+                        </div>
+                        <div class="lost-found-list">
+                            <div class="lost-found-item found">
+                                <div class="item-badge">Found</div>
+                                <div class="item-details">
+                                    <h4>Calculator</h4>
+                                    <p>Room 302 • Feb 13</p>
+                                </div>
+                            </div>
+                            <div class="lost-found-item lost">
+                                <div class="item-badge">Lost</div>
+                                <div class="item-details">
+                                    <h4>Water Flask</h4>
+                                    <p>Gym • Feb 12</p>
+                                </div>
+                            </div>
+                            <div class="lost-found-item found">
+                                <div class="item-badge">Found</div>
+                                <div class="item-details">
+                                    <h4>ID Lace</h4>
+                                    <p>Library • Feb 11</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Access</h3>
+                        </div>
+                        <div class="quick-links-grid">
+                            <a href="staff.html" class="quick-link">
+                                <span class="link-icon">👨‍🏫</span>
+                                <span class="link-text">Staff</span>
+                            </a>
+                            <a href="settings.html" class="quick-link">
+                                <span class="link-icon">⚙️</span>
+                                <span class="link-text">Settings</span>
+                            </a>
+                            <a href="#" class="quick-link">
+                                <span class="link-icon">📚</span>
+                                <span class="link-text">Calendar</span>
+                            </a>
+                            <a href="#" class="quick-link">
+                                <span class="link-icon">📊</span>
+                                <span class="link-text">Reports</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Pasig City Science High School</h4>
+                    <p class="footer-tagline">We Excel, We Serve, We Lead.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/OfficialPasigScienceHS" target="_blank" class="social-link" title="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Address: [To be updated]</p>
+                    <p>Phone: 123-456-7890</p>
+                    <p>Email: info@pcshs.edu.ph</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Admissions</a>
+                    <a href="#">Academic Programs</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pasig City Science High School. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="module">
+  // 1. Load the Firebase "Logic"
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // 2. Paste your Config here (The stuff from your firebase-config.js)
+  const firebaseConfig = {
+    apiKey: "AIzaSyA0KuFigt75UqNmQ8Ze-gm_Qe8XC1VtfBA",
+    authDomain: "pcshs-sms.firebaseapp.com",
+    projectId: "pcshs-sms",
+    storageBucket: "pcshs-sms.firebasestorage.app",
+    messagingSenderId: "23508357934",
+    appId: "1:23508357934:web:7d11fe6b9327a2e74760bf",
+    measurementId: "G-LXR4QKXDME"
+  };
+
+  // 3. Initialize ("Connect")
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 4. TEST: Send a message to your database
+  async function testDatabase() {
+    try {
+      await setDoc(doc(db, "testCollection", "testDoc"), {
+        message: "Connection Successful!",
+        time: new Date()
+      });
+      console.log("Success! Check your Firebase Console!");
+    } catch (e) {
+      console.error("Error connecting: ", e);
+    }
+  }
+
+  testDatabase();
+</script>
+</body>
+</html>
