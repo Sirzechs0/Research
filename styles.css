@@ -186,11 +186,18 @@ a {
 .main-header {
     background-color: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 1000;
+    left: 0;
+    right: 0;
+    z-index: 9999;
     transition: all var(--transition-base);
     animation: slideInRight var(--transition-slow) ease-out;
+}
+
+/* Add padding to body to prevent content from hiding under fixed header */
+body {
+    padding-top: 80px;
 }
 
 .header-content {
@@ -353,6 +360,12 @@ a {
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--transition-base);
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    box-shadow: var(--shadow-md);
 }
 
 .mobile-nav.active {
@@ -405,7 +418,7 @@ a {
     position: absolute;
     bottom: -5px;
     left: 0;
-    width: 60px;
+    width: 100%;
     height: 3px;
     background-color: var(--accent-black);
     animation: slideInRight 0.8s ease-out;
@@ -1835,5 +1848,131 @@ a {
     
     .slide-content p {
         font-size: 0.9rem;
+    }
+}
+
+/* === PAGE TRANSITION (NO BLINK) === */
+body {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+body.page-loading {
+    opacity: 0;
+}
+
+/* Prevent layout shift during page load */
+html {
+    overflow-y: scroll;
+}
+
+/* Smooth page navigation */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page-wrapper {
+    animation: fadeInPage 0.3s ease-in;
+}
+
+/* === ICON REPLACEMENTS === */
+.stat-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    font-style: normal;
+}
+
+/* Replace emoji icons with SVG styling */
+.stat-icon svg,
+.link-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--text-primary);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Quick link icons */
+.link-icon {
+    font-size: 1.75rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.5rem;
+}
+
+.quick-link:hover .link-icon {
+    background-color: var(--accent-black);
+}
+
+.quick-link:hover .link-icon svg {
+    stroke: var(--bg-primary);
+}
+
+/* === HEADER ACTIONS & SIGN UP === */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.signup-link {
+    padding: 0.5rem 1.25rem;
+    background-color: var(--accent-black);
+    color: var(--bg-primary);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.signup-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .signup-link {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Mobile signup in nav */
+.mobile-nav-link[href="#signup"] {
+    background-color: var(--accent-black);
+    color: var(--bg-primary);
+    text-align: center;
+    font-weight: 600;
+    margin: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+}
+
+.mobile-nav-link[href="#signup"]:hover {
+    padding-left: var(--spacing-lg);
+}
+
+/* Responsive header actions */
+@media (max-width: 768px) {
+    .header-actions .signup-link {
+        display: none;
     }
 }

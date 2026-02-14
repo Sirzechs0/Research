@@ -26,11 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
     }
     
-    // Add event listeners for theme toggle
+    // Add event listeners for theme toggle (header button)
     if (themeToggle) {
         themeToggle.addEventListener('click', switchTheme);
     }
     
+    // Add event listener for settings page theme switch
     if (themeSwitch) {
         themeSwitch.addEventListener('click', switchTheme);
     }
