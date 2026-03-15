@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PCSHS SMS</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo-circle">
+                    <img src="https://scontent.fmnl45-1.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=G4hz7WFJFWkQ7kNvwHOTKDB&_nc_oc=AdlVBUwmmK80dszuwia_k2MW_KqXUJSk4YzJBJCLGNhIWGAiYxkrEHKnxNRqdyyvm7E&_nc_zt=23&_nc_ht=scontent.fmnl45-1.fna&_nc_gid=42AnOjcHOoxKMl89zDVY5Q&_nc_ss=8&oh=00_AfwszdKbYtTdBFHnyesTAW7f03WNB8aGDAK6sze66Ncb3Q&oe=69BB025D" alt="PCSHS Logo">
+                </div>
+                <h1>PCSHS</h1>
+                <p class="tagline">We Excel, We Serve, We Lead.</p>
+                <h2>Admin Login</h2>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div id="login-error" class="login-error" style="display: none;"></div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-input" 
+                        required 
+                        autocomplete="username"
+                        placeholder="Enter your username"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        required 
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                    >
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Login</span>
+                    <span class="btn-loader" style="display: none;">⏳</span>
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Demo Accounts:</p>
+                <div class="demo-accounts">
+                    <div class="demo-account">
+                        <strong>Admin:</strong> <code>admin</code> / <code>admin123</code>
+                    </div>
+                    <div class="demo-account">
+                        <strong>Staff:</strong> <code>staff</code> / <code>staff123</code>
+                    </div>
+                </div>
+                <a href="index.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            const loginBtn = e.target.querySelector('.login-btn');
+            const btnText = loginBtn.querySelector('.btn-text');
+            const btnLoader = loginBtn.querySelector('.btn-loader');
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            loginBtn.disabled = true;
+            errorDiv.style.display = 'none';
+            
+            // Simulate network delay
+            setTimeout(() => {
+                const result = Auth.login(username, password);
+                
+                if (result.success) {
+                    // Success - redirect to admin panel
+                    window.location.href = 'admin.html';
+                } else {
+                    // Error - show message
+                    errorDiv.textContent = result.error;
+                    errorDiv.style.display = 'block';
+                    
+                    // Reset button
+                    btnText.style.display = 'inline';
+                    btnLoader.style.display = 'none';
+                    loginBtn.disabled = false;
+                    
+                    // Shake animation
+                    errorDiv.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        errorDiv.style.animation = '';
+                    }, 500);
+                }
+            }, 500);
+        });
+
+        // If already logged in, redirect to admin panel
+        if (Auth.isLoggedIn() && Auth.isAdmin()) {
+            window.location.href = 'admin.html';
+        }
+    </script>
+</body>
+</html>

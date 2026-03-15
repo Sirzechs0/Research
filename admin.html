@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | PCSHS SMS</title>
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="brand">
+                    <div class="logo-circle">
+                        <img src="https://scontent.fmnl45-1.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=G4hz7WFJFWkQ7kNvwHOTKDB&_nc_oc=AdlVBUwmmK80dszuwia_k2MW_KqXUJSk4YzJBJCLGNhIWGAiYxkrEHKnxNRqdyyvm7E&_nc_zt=23&_nc_ht=scontent.fmnl45-1.fna&_nc_gid=42AnOjcHOoxKMl89zDVY5Q&_nc_ss=8&oh=00_AfwszdKbYtTdBFHnyesTAW7f03WNB8aGDAK6sze66Ncb3Q&oe=69BB025D" alt="PCSHS Logo">
+                    </div>
+                    <div class="brand-text">
+                        <h1>PCSHS</h1>
+                        <p class="tagline">We Excel, We Serve, We Lead.</p>
+                    </div>
+                </div>
+                
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">Dashboard</a>
+                    <a href="attendance.html" class="nav-link">Attendance</a>
+                    <a href="announcements.html" class="nav-link">Announcements</a>
+                    <a href="lost-found.html" class="nav-link">Lost & Found</a>
+                    <a href="staff.html" class="nav-link">Staff</a>
+                    <a href="settings.html" class="nav-link">Settings</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a href="#signup" class="signup-link">Sign Up</a>
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                        <span class="theme-icon">◐</span>
+                    </button>
+                </div>
+
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Dashboard</a>
+            <a href="attendance.html" class="mobile-nav-link">Attendance</a>
+            <a href="announcements.html" class="mobile-nav-link">Announcements</a>
+            <a href="lost-found.html" class="mobile-nav-link">Lost & Found</a>
+            <a href="staff.html" class="mobile-nav-link">Staff</a>
+            <a href="settings.html" class="mobile-nav-link">Settings</a>
+            <a href="#signup" class="mobile-nav-link">Sign Up</a>
+        </nav>
+
+        <main class="main-content">
+            <div class="content-container">
+                <div class="page-header">
+                    <h2 class="page-title">Admin Panel 🔐</h2>
+                    <p class="page-subtitle" id="welcome-message">Welcome back, Administrator!</p>
+                </div>
+
+                <div class="admin-dashboard-grid">
+                    <!-- Quick Stats -->
+                    <div class="dashboard-card admin-stat-card">
+                        <div class="stat-icon">📊</div>
+                        <h3>Total Students</h3>
+                        <div class="stat-number">246</div>
+                        <p class="stat-label">Grade 11 (7 sections)</p>
+                    </div>
+
+                    <div class="dashboard-card admin-stat-card">
+                        <div class="stat-icon">✓</div>
+                        <h3>Today's Attendance</h3>
+                        <div class="stat-number">95.5%</div>
+                        <p class="stat-label">235 present, 11 absent</p>
+                    </div>
+
+                    <div class="dashboard-card admin-stat-card">
+                        <div class="stat-icon">📢</div>
+                        <h3>Active Announcements</h3>
+                        <div class="stat-number">10</div>
+                        <p class="stat-label">3 important</p>
+                    </div>
+
+                    <div class="dashboard-card admin-stat-card">
+                        <div class="stat-icon">🔍</div>
+                        <h3>Lost & Found</h3>
+                        <div class="stat-number">8</div>
+                        <p class="stat-label">5 lost, 3 found</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <section class="admin-section">
+                    <h3 class="section-title">Quick Actions</h3>
+                    <div class="admin-actions-grid">
+                        <a href="attendance.html" class="admin-action-card">
+                            <div class="action-icon">✓</div>
+                            <h4>Mark Attendance</h4>
+                            <p>Record student attendance for today</p>
+                        </a>
+
+                        <a href="announcements.html" class="admin-action-card">
+                            <div class="action-icon">📢</div>
+                            <h4>Post Announcement</h4>
+                            <p>Create a new school announcement</p>
+                        </a>
+
+                        <a href="lost-found.html" class="admin-action-card">
+                            <div class="action-icon">🔍</div>
+                            <h4>Manage Lost & Found</h4>
+                            <p>Add or update lost & found items</p>
+                        </a>
+
+                        <div class="admin-action-card" onclick="AdminPanel.showToast('Feature coming soon!', 'info')">
+                            <div class="action-icon">📊</div>
+                            <h4>Generate Reports</h4>
+                            <p>Export attendance and statistics</p>
+                        </div>
+
+                        <div class="admin-action-card" onclick="AdminPanel.showToast('Feature coming soon!', 'info')">
+                            <div class="action-icon">👥</div>
+                            <h4>Manage Students</h4>
+                            <p>Add, edit, or remove student records</p>
+                        </div>
+
+                        <a href="settings.html" class="admin-action-card">
+                            <div class="action-icon">⚙️</div>
+                            <h4>System Settings</h4>
+                            <p>Configure system preferences</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Recent Activity -->
+                <section class="admin-section">
+                    <h3 class="section-title">Recent Activity</h3>
+                    <div class="activity-log">
+                        <div class="activity-item">
+                            <div class="activity-icon">✓</div>
+                            <div class="activity-content">
+                                <strong>Attendance marked</strong>
+                                <p>Section Cayley - 34/36 present</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">📢</div>
+                            <div class="activity-content">
+                                <strong>Announcement posted</strong>
+                                <p>"Final Examination Schedule Posted"</p>
+                                <span class="activity-time">3 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">🔍</div>
+                            <div class="activity-content">
+                                <strong>Lost item added</strong>
+                                <p>Black Backpack - Room 301</p>
+                                <span class="activity-time">5 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-icon">👤</div>
+                            <div class="activity-content">
+                                <strong>User logged in</strong>
+                                <p id="login-activity">Administrator</p>
+                                <span class="activity-time" id="login-time">Just now</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- System Info -->
+                <section class="admin-section">
+                    <h3 class="section-title">System Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Version</span>
+                            <span class="info-value">SMS v2.0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Last Updated</span>
+                            <span class="info-value">February 15, 2026</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Database Status</span>
+                            <span class="info-value">🟢 Connected</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Server Status</span>
+                            <span class="info-value">🟢 Online</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Active Sessions</span>
+                            <span class="info-value">1</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Last Backup</span>
+                            <span class="info-value">Today, 12:00 AM</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Pasig City Science High School</h4>
+                    <p class="footer-tagline">We Excel, We Serve, We Lead.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/OfficialPasigScienceHS" target="_blank" class="social-link" title="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <p>Address: [To be updated]</p>
+                    <p>Phone: 123-456-7890</p>
+                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__">[email&#160;protected]</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Admissions</a>
+                    <a href="#">Academic Programs</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pasig City Science High School. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin-panel.js"></script>
+    <script>
+        // Require admin authentication
+        Auth.requireAdmin();
+
+        // Update welcome message
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = Auth.getCurrentUser();
+            if (user) {
+                const welcomeMsg = document.getElementById('welcome-message');
+                welcomeMsg.textContent = `Welcome back, ${user.name}!`;
+                
+                const loginActivity = document.getElementById('login-activity');
+                loginActivity.textContent = user.name;
+                
+                const loginTime = document.getElementById('login-time');
+                const timeSince = Math.floor((new Date() - new Date(user.loginTime)) / 60000);
+                if (timeSince < 1) {
+                    loginTime.textContent = 'Just now';
+                } else if (timeSince === 1) {
+                    loginTime.textContent = '1 minute ago';
+                } else if (timeSince < 60) {
+                    loginTime.textContent = `${timeSince} minutes ago`;
+                } else {
+                    const hours = Math.floor(timeSince / 60);
+                    loginTime.textContent = hours === 1 ? '1 hour ago' : `${hours} hours ago`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

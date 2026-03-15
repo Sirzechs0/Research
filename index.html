@@ -11,6 +11,7 @@
         })();
     </script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
             <div class="header-content">
                 <div class="brand">
                     <div class="logo-circle">
-                        <img src="https://scontent.fmnl37-1.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=gp0ZzTKDQMwQ7kNvwGSccpo&_nc_oc=AdkS6TagnNi_NQUb37dei09lM-GqP7SSn5Nz0Eq3Dnu0DdeiheZ0F_UtOUonIMnrnPE&_nc_zt=23&_nc_ht=scontent.fmnl37-1.fna&_nc_gid=mTZ3cdKSTLsjJLD2O_7xGw&oh=00_AfuEgecTuqdsgg8ziDahvytCXsioWb3xhP7FhcdzDXIiiQ&oe=6996C11D" alt="PCSHS Logo">
+                        <img src="https://scontent.fmnl45-1.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=G4hz7WFJFWkQ7kNvwHOTKDB&_nc_oc=AdlVBUwmmK80dszuwia_k2MW_KqXUJSk4YzJBJCLGNhIWGAiYxkrEHKnxNRqdyyvm7E&_nc_zt=23&_nc_ht=scontent.fmnl45-1.fna&_nc_gid=42AnOjcHOoxKMl89zDVY5Q&_nc_ss=8&oh=00_AfwszdKbYtTdBFHnyesTAW7f03WNB8aGDAK6sze66Ncb3Q&oe=69BB025D" alt="PCSHS Logo">
                     </div>
                     <div class="brand-text">
                         <h1>PCSHS</h1>
@@ -341,5 +342,229 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="attendance-data.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin-panel.js"></script>
+    <script>
+    // Update dashboard stats with real attendance data
+    document.addEventListener('DOMContentLoaded', function() {
+        const stats = AttendanceData.getSchoolStats();
+        
+        // Update total students
+        const totalStudentsEl = document.querySelector('.stat-card:nth-child(1) .stat-number');
+        if (totalStudentsEl) totalStudentsEl.textContent = stats.totalStudents.toLocaleString();
+        
+        // Update present count  
+        const presentEl = document.querySelector('.stat-card:nth-child(2) .stat-number');
+        if (presentEl) presentEl.textContent = stats.totalPresent.toLocaleString();
+        
+        // Update attendance rate
+        const rateEl = document.querySelector('.stat-card:nth-child(3) .stat-number');
+        if (rateEl) rateEl.textContent = stats.attendanceRate + '%';
+        
+        // Add absent count if there's a 4th stat card
+        const absentEl = document.querySelector('.stat-card:nth-child(4) .stat-number');
+        if (absentEl) absentEl.textContent = stats.totalAbsent.toLocaleString();
+        
+        // Create attendance chart after a brief delay to ensure DOM is ready
+        setTimeout(createAttendanceChart, 100);
+    });
+
+    function createAttendanceChart() {
+        const history = AttendanceData.getHistory();
+        if (history.length === 0) {
+            console.log('No attendance history available');
+            return;
+        }
+        
+        // Find or create chart container
+        let chartContainer = document.getElementById('attendance-chart-container');
+        if (!chartContainer) {
+            // Create chart section after stats grid
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid && statsGrid.parentElement) {
+                chartContainer = document.createElement('div');
+                chartContainer.id = 'attendance-chart-container';
+                chartContainer.className = 'dashboard-card';
+                chartContainer.style.gridColumn = '1 / -1';
+                chartContainer.style.marginTop = '2rem';
+                chartContainer.innerHTML = `
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">📈 7-Day Attendance Trend</h3>
+                    <canvas id="attendance-chart" style="max-height: 350px;"></canvas>
+                `;
+                statsGrid.parentElement.insertBefore(chartContainer, statsGrid.nextSibling);
+            }
+        }
+        
+        const canvas = document.getElementById('attendance-chart');
+        if (!canvas) {
+            console.log('Canvas element not found');
+            return;
+        }
+        
+        const ctx = canvas.getContext('2d');
+        
+        // Prepare data
+        const labels = history.map(h => {
+            const date = new Date(h.date);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        });
+        
+        const attendanceRates = history.map(h => parseFloat(h.attendanceRate));
+        const presentCounts = history.map(h => h.totalPresent);
+        const absentCounts = history.map(h => h.totalAbsent);
+        
+        // Create gradient for area fill
+        const gradient = ctx.createLinearGradient(0, 0, 0, 350);
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.2)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0.02)');
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Attendance Rate (%)',
+                    data: attendanceRates,
+                    borderColor: '#000',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: '#000',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverBackgroundColor: '#000',
+                    pointHoverBorderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: "'DM Sans', sans-serif",
+                                size: 13
+                            },
+                            color: '#333',
+                            usePointStyle: true,
+                            padding: 15
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        titleFont: {
+                            family: "'DM Sans', sans-serif",
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            family: "'DM Sans', sans-serif",
+                            size: 13
+                        },
+                        padding: 12,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            title: function(context) {
+                                return context[0].label;
+                            },
+                            label: function(context) {
+                                return 'Attendance: ' + context.parsed.y.toFixed(1) + '%';
+                            },
+                            afterLabel: function(context) {
+                                const index = context.dataIndex;
+                                return [
+                                    'Present: ' + presentCounts[index].toLocaleString() + ' students',
+                                    'Absent: ' + absentCounts[index].toLocaleString() + ' students'
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 85,
+                        max: 100,
+                        ticks: {
+                            font: {
+                                family: "'DM Sans', sans-serif",
+                                size: 12
+                            },
+                            color: '#666',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Attendance Rate (%)',
+                            font: {
+                                family: "'DM Sans', sans-serif",
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            color: '#333'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'DM Sans', sans-serif",
+                                size: 12
+                            },
+                            color: '#666'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Date',
+                            font: {
+                                family: "'DM Sans', sans-serif",
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            color: '#333'
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+    </script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const signupLink = document.querySelector('.signup-link');
+    if (signupLink) {
+      signupLink.textContent = 'Log In';
+      signupLink.href = 'login.html';
+    }
+
+    const mobileSignupLinks = document.querySelectorAll('.mobile-nav-link[href="#signup"]');
+    mobileSignupLinks.forEach(link => {
+      link.textContent = 'Log In';
+      link.href = 'login.html';
+    });
+  });
+</script>
 </body>
 </html>

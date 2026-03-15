@@ -11,6 +11,7 @@
         })();
     </script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
             <div class="header-content">
                 <div class="brand">
                     <div class="logo-circle">
-                        <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=iMPywxmVTEoQ7kNvwEQrPv5&_nc_oc=AdnGshlAzgkDnDwRwQBzFucGwYtIyKoLSCQzriNtRUuX0HehECkT_XVzM3UK5J4S63Y&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=vm_hQKnxwKt6pluqFSEt6g&oh=00_AfvT22S4-xXQa66rsTN-f0n9tPTQ-rv-IXTeO9lvmAypCg&oe=6995E01D" alt="PCSHS Logo">
+                        <img src="https://scontent.fmnl45-1.fna.fbcdn.net/v/t39.30808-6/309258395_483385247134731_7780527028292631951_n.png?_nc_cat=109&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeEnjioXypkcCzTvjUI_GfoyGgmAjFWu3rAaCYCMVa7esFYODNkSpcHhrvNrGNVSoVxvWWEHWLIH9kW-_f2EFAth&_nc_ohc=G4hz7WFJFWkQ7kNvwHOTKDB&_nc_oc=AdlVBUwmmK80dszuwia_k2MW_KqXUJSk4YzJBJCLGNhIWGAiYxkrEHKnxNRqdyyvm7E&_nc_zt=23&_nc_ht=scontent.fmnl45-1.fna&_nc_gid=42AnOjcHOoxKMl89zDVY5Q&_nc_ss=8&oh=00_AfwszdKbYtTdBFHnyesTAW7f03WNB8aGDAK6sze66Ncb3Q&oe=69BB025D" alt="PCSHS Logo">
                     </div>
                     <div class="brand-text">
                         <h1>PCSHS</h1>
@@ -305,5 +306,22 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin-panel.js"></script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const signupLink = document.querySelector('.signup-link');
+    if (signupLink) {
+      signupLink.textContent = 'Log In';
+      signupLink.href = 'login.html';
+    }
+
+    const mobileSignupLinks = document.querySelectorAll('.mobile-nav-link[href="#signup"]');
+    mobileSignupLinks.forEach(link => {
+      link.textContent = 'Log In';
+      link.href = 'login.html';
+    });
+  });
+</script>
 </body>
 </html>
