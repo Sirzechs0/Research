@@ -342,6 +342,21 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       const signupLink = document.querySelector('.signup-link');
+       if (signupLink) {
+         signupLink.textContent = 'Log In';
+         signupLink.href = 'login.html';
+       }
+
+       const mobileSignupLinks = document.querySelectorAll('.mobile-nav-link[href="#signup"]');
+       mobileSignupLinks.forEach(link => {
+         link.textContent = 'Log In';
+         link.href = 'login.html';
+       });
+     });
+   </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="attendance-data.js"></script>
     <script src="auth.js"></script>
@@ -551,20 +566,5 @@
         });
     }
     </script>
-    <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const signupLink = document.querySelector('.signup-link');
-    if (signupLink) {
-      signupLink.textContent = 'Log In';
-      signupLink.href = 'login.html';
-    }
-
-    const mobileSignupLinks = document.querySelectorAll('.mobile-nav-link[href="#signup"]');
-    mobileSignupLinks.forEach(link => {
-      link.textContent = 'Log In';
-      link.href = 'login.html';
-    });
-  });
-</script>
 </body>
 </html>

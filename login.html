@@ -32,15 +32,15 @@
                 <div id="login-error" class="login-error" style="display: none;"></div>
                 
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="email">Email Address</label>
                     <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
+                        type="email" 
+                        id="email" 
+                        name="email" 
                         class="form-input" 
                         required 
-                        autocomplete="username"
-                        placeholder="Enter your username"
+                        autocomplete="email"
+                        placeholder="admin@pcshs.edu.ph"
                     >
                 </div>
 
@@ -57,75 +57,75 @@
                     >
                 </div>
 
-                <button type="submit" class="login-btn">
+                <button type="submit" class="login-btn" id="login-btn">
                     <span class="btn-text">Login</span>
-                    <span class="btn-loader" style="display: none;">⏳</span>
+                    <span class="btn-loader" style="display: none;">⏳ Logging in...</span>
                 </button>
             </form>
 
             <div class="login-footer">
-                <p>Demo Accounts:</p>
-                <div class="demo-accounts">
-                    <div class="demo-account">
-                        <strong>Admin:</strong> <code>admin</code> / <code>admin123</code>
-                    </div>
-                    <div class="demo-account">
-                        <strong>Staff:</strong> <code>staff</code> / <code>staff123</code>
-                    </div>
-                </div>
+                <p>Don't have an account? Contact the administrator.</p>
                 <a href="index.html" class="back-link">← Back to Dashboard</a>
             </div>
         </div>
     </div>
 
-    <script src="auth.js"></script>
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+    <script type="module">
+        import { auth, signInWithEmailAndPassword, onAuthStateChanged } from './firebase-config.js';
+
+        const loginForm = document.getElementById('login-form');
+        const errorDiv = document.getElementById('login-error');
+        const loginBtn = document.getElementById('login-btn');
+        const btnText = loginBtn.querySelector('.btn-text');
+        const btnLoader = loginBtn.querySelector('.btn-loader');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'admin.html';
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('login-error');
-            const loginBtn = e.target.querySelector('.login-btn');
-            const btnText = loginBtn.querySelector('.btn-text');
-            const btnLoader = loginBtn.querySelector('.btn-loader');
             
-            // Show loading state
             btnText.style.display = 'none';
             btnLoader.style.display = 'inline';
             loginBtn.disabled = true;
             errorDiv.style.display = 'none';
             
-            // Simulate network delay
-            setTimeout(() => {
-                const result = Auth.login(username, password);
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                let errorMessage = 'Login failed. Please try again.';
                 
-                if (result.success) {
-                    // Success - redirect to admin panel
-                    window.location.href = 'admin.html';
-                } else {
-                    // Error - show message
-                    errorDiv.textContent = result.error;
-                    errorDiv.style.display = 'block';
-                    
-                    // Reset button
-                    btnText.style.display = 'inline';
-                    btnLoader.style.display = 'none';
-                    loginBtn.disabled = false;
-                    
-                    // Shake animation
-                    errorDiv.style.animation = 'shake 0.5s';
-                    setTimeout(() => {
-                        errorDiv.style.animation = '';
-                    }, 500);
+                if (error.code === 'auth/invalid-credential') {
+                    errorMessage = 'Invalid email or password.';
+                } else if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'No account found with this email.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Incorrect password.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessage = 'Too many failed attempts. Please try again later.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage = 'Network error. Please check your connection.';
                 }
-            }, 500);
+                
+                errorDiv.textContent = errorMessage;
+                errorDiv.style.display = 'block';
+                errorDiv.style.animation = 'shake 0.5s';
+                
+                btnText.style.display = 'inline';
+                btnLoader.style.display = 'none';
+                loginBtn.disabled = false;
+                
+                setTimeout(() => {
+                    errorDiv.style.animation = '';
+                }, 500);
+            }
         });
-
-        // If already logged in, redirect to admin panel
-        if (Auth.isLoggedIn() && Auth.isAdmin()) {
-            window.location.href = 'admin.html';
-        }
     </script>
 </body>
 </html>
